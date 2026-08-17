@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root {
+    background-color: #000000 !important;
+    background-image: none !important;
+    color: #f1f5f9;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background-color: rgba(0, 255, 102, 0.4);
+    color: #00ff66;
+  }
+}
+
+/* Custom Pure Black Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #041409;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 255, 102, 0.4);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #00ff66;
+  box-shadow: 0 0 12px #00ff66;
+}
+
+/* Neon Green & Crimson Highlight Markers */
+.highlight-emotional {
+  background-color: rgba(255, 0, 85, 0.25);
+  border-bottom: 2px solid #ff0055;
+  color: #ff80ab;
+  border-radius: 4px;
+  padding: 1px 6px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(255, 0, 85, 0.4);
+  transition: all 0.25s ease;
+}
+.highlight-emotional:hover {
+  background-color: rgba(255, 0, 85, 0.5);
+  box-shadow: 0 0 22px rgba(255, 0, 85, 0.8);
+  color: #ffffff;
+}
+
+.highlight-clickbait {
+  background-color: rgba(255, 170, 0, 0.25);
+  border-bottom: 2px solid #ffaa00;
+  color: #ffe082;
+  border-radius: 4px;
+  padding: 1px 6px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(255, 170, 0, 0.4);
+  transition: all 0.25s ease;
+}
+.highlight-clickbait:hover {
+  background-color: rgba(255, 170, 0, 0.5);
+  box-shadow: 0 0 22px rgba(255, 170, 0, 0.8);
+  color: #ffffff;
+}
+
+.highlight-unsourced {
+  background-color: rgba(118, 255, 3, 0.25);
+  border-bottom: 2px solid #76ff03;
+  color: #ccff90;
+  border-radius: 4px;
+  padding: 1px 6px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(118, 255, 3, 0.4);
+  transition: all 0.25s ease;
+}
+.highlight-unsourced:hover {
+  background-color: rgba(118, 255, 3, 0.5);
+  box-shadow: 0 0 22px rgba(118, 255, 3, 0.8);
+  color: #ffffff;
+}
+
+.highlight-sensational, .highlight-logical_fallacy, .highlight-bias, .highlight-other {
+  background-color: rgba(0, 255, 102, 0.25);
+  border-bottom: 2px solid #00ff66;
+  color: #a7ffeb;
+  border-radius: 4px;
+  padding: 1px 6px;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(0, 255, 102, 0.4);
+  transition: all 0.25s ease;
+}
+.highlight-sensational:hover, .highlight-logical_fallacy:hover, .highlight-bias:hover, .highlight-other:hover {
+  background-color: rgba(0, 255, 102, 0.5);
+  box-shadow: 0 0 22px rgba(0, 255, 102, 0.8);
+  color: #ffffff;
+}

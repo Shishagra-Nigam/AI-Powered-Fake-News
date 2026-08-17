@@ -1,0 +1,16 @@
+{
+  "name": "ai-powered-fake-news-detector",
+  "version": "1.0.0",
+  "description": "Portfolio Full-Stack MERN + Python ML Microservice + LLM Misinformation Detector",
+  "scripts": {
+    "train:ml": "cd ml-service && .\\venv\\Scripts\\python.exe train.py",
+    "start:ml": "cd ml-service && .\\venv\\Scripts\\python.exe app.py",
+    "start:server": "cd server && npm run dev",
+    "start:client": "cd client && npm run dev",
+    "dev": "concurrently --kill-others-on-fail -n \"ML,SERVER,CLIENT\" -c \"yellow,blue,green\" \"npm run start:ml\" \"npm run start:server\" \"npm run start:client\"",
+    "install:all": "cd server && npm install && cd ../client && npm install && cd ../ml-service && python -m venv venv && .\\venv\\Scripts\\pip.exe install -r requirements.txt"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}
