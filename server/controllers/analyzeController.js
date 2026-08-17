@@ -3,6 +3,7 @@ const { scrapeArticle } = require('../services/scraperService');
 const { predictWithML } = require('../services/mlService');
 const { analyzeTextWithLLM } = require('../services/llmService');
 const { verifyClaimOnWeb } = require('../services/factCheckService');
+const fallbackDb = require('../services/dbFallbackService');
 
 /**
  * Controller to handle article analysis requests (raw text or URL).
@@ -110,14 +111,16 @@ const analyzeArticle = async (req, res, next) => {
       }
     };
 
-    // Save to MongoDB if DB connection is active
+    // Save to MongoDB or Fallback DB
     let savedRecord = null;
     try {
       if (Analysis.db.readyState === 1) {
         savedRecord = await Analysis.create(analysisPayload);
+      } else {
+        savedRecord = await fallbackDb.createAnalysisRecord(analysisPayload);
       }
     } catch (dbErr) {
-      console.warn(`[DATABASE WARNING] Could not persist analysis to MongoDB: ${dbErr.message}`);
+      console.warn(`[DATABASE WARNING] Could not persist analysis: ${dbErr.message}`);
     }
 
     const responseId = savedRecord ? savedRecord._id : `temp_${Date.now()}`;

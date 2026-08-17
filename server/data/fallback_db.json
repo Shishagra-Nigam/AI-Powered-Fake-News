@@ -1,0 +1,19 @@
+{
+  "users": [
+    {
+      "_id": "user_1786994694042_gmw5av",
+      "username": "ShishagraTest",
+      "email": "test_user_2026@gmail.com",
+      "password": "$2a$10$dKei1ZeMozJGSiFkAFW1autJiCyOFPqLxNdTVBEdQalriC0At/r3W",
+      "createdAt": "2026-08-17T19:24:54.042Z"
+    },
+    {
+      "_id": "user_1786994717430_4iy0vg",
+      "username": "Shishagra",
+      "email": "varunigam41349799@gmail.com",
+      "password": "$2a$10$8p69D58L9NKbx.zpX5s87eED96rBcYELlNU1wwbzuDBmYRY6ZEXgW",
+      "createdAt": "2026-08-17T19:25:17.431Z"
+    }
+  ],
+  "history": []
+}
