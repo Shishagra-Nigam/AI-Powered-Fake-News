@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paytm - Balance & History | Shishagra Nigam (HDFC Bank ₹5,000)</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Controls Bar for Mobile Frame / Theme / Preset -->
+  <div class="top-controls">
+    <div class="control-brand">
+      <i class="fa-solid fa-wallet"></i> Paytm UI Preview
+    </div>
+    <div class="control-actions">
+      <button id="toggleFrameBtn" title="Toggle Phone Frame View"><i class="fa-solid fa-mobile-screen"></i> Phone View</button>
+      <button id="toggleDarkBtn" title="Toggle Dark Theme"><i class="fa-solid fa-moon"></i> Dark Mode</button>
+      <button id="refreshBalanceBtn" title="Refresh Balance"><i class="fa-solid fa-arrows-rotate"></i> Refresh ₹5,000</button>
+    </div>
+  </div>
+
+  <div class="main-wrapper">
+    <!-- Phone Mockup Container -->
+    <div class="phone-frame" id="phoneFrame">
+
+      <!-- Mobile Status Bar -->
+      <div class="status-bar">
+        <span class="status-time" id="statusTime">17:31</span>
+        <div class="status-icons">
+          <i class="fa-solid fa-signal"></i>
+          <span class="network-badge">5G</span>
+          <i class="fa-solid fa-battery-three-quarters"></i>
+        </div>
+      </div>
+
+      <!-- App Header Bar -->
+      <div class="app-header">
+        <button class="header-back-btn" title="Back">
+          <i class="fa-solid fa-arrow-left"></i>
+        </button>
+        <span class="header-user-tag">Shishagra Nigam</span>
+        <div class="header-right-actions">
+          <button class="header-icon-btn" title="Help & Support"><i class="fa-solid fa-circle-question"></i></button>
+        </div>
+      </div>
+
+      <!-- Scrollable Main Content -->
+      <div class="app-content">
+
+        <!-- Title Section -->
+        <div class="section-title-wrapper">
+          <h1 class="page-title">Balance & History</h1>
+        </div>
+
+        <!-- Accounts Section -->
+        <div class="accounts-section">
+          <div class="section-header-row">
+            <div class="accounts-left">
+              <span class="section-heading">Accounts</span>
+              <span class="total-balance-text">Total Balance: <strong id="totalBalanceAmount">₹5,000.00</strong></span>
+            </div>
+            <span class="accounts-count">(1 of 3 accounts)</span>
+          </div>
+
+          <!-- Accounts Horizontal Scroll Cards -->
+          <div class="cards-carousel">
+
+            <!-- Card 1: HDFC Bank (Primary Account with ₹5,000) -->
+            <div class="account-card hdfc-card featured">
+              <div class="card-top-row">
+                <div class="bank-info">
+                  <div class="bank-logo hdfc-logo">
+                    <div class="hdfc-inner-box"></div>
+                  </div>
+                  <div class="bank-name-group">
+                    <span class="bank-name">HDFC Bank <i class="fa-solid fa-chevron-right bank-arrow"></i></span>
+                    <span class="acc-subtext">Saving A/c 5820</span>
+                  </div>
+                </div>
+                <button class="hide-bal-btn" id="toggleBalVisibilityBtn" title="Hide/Show Balance">
+                  <i class="fa-solid fa-eye" id="eyeIcon"></i>
+                </button>
+              </div>
+
+              <div class="card-balance-row">
+                <div class="balance-display-group">
+                  <span class="balance-amount" id="hdfcBalanceDisplay">₹5,000</span>
+                  <span class="balance-sublabel"><i class="fa-solid fa-circle-check balance-check"></i> Updated just now</span>
+                </div>
+              </div>
+
+              <div class="card-actions">
+                <button class="card-action-btn primary" id="pinCheckBtn">
+                  <i class="fa-solid fa-key"></i> Enter UPI PIN
+                </button>
+                <button class="card-action-btn secondary" id="payBtn">
+                  <i class="fa-solid fa-paper-plane"></i> Send
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 2: SBI Bank -->
+            <div class="account-card sbi-card">
+              <div class="card-top-row">
+                <div class="bank-info">
+                  <div class="bank-logo sbi-logo">
+                    <div class="sbi-inner-circle"></div>
+                  </div>
+                  <div class="bank-name-group">
+                    <span class="bank-name">SBI Bank <i class="fa-solid fa-chevron-right bank-arrow"></i></span>
+                    <span class="acc-subtext">Saving A/c 6391</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-balance-row text-center">
+                <button class="check-balance-pill-btn" onclick="openUpiPinModal('SBI Bank', '6391')">
+                  Check Balance
+                </button>
+              </div>
+            </div>
+
+            <!-- Card 3: Canara Bank -->
+            <div class="account-card canara-card">
+              <div class="card-top-row">
+                <div class="bank-info">
+                  <div class="bank-logo canara-logo">
+                    <i class="fa-solid fa-building-columns"></i>
+                  </div>
+                  <div class="bank-name-group">
+                    <span class="bank-name">Canara Bank <i class="fa-solid fa-chevron-right bank-arrow"></i></span>
+                    <span class="acc-subtext">Saving A/c 1092</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card-balance-row text-center">
+                <button class="check-balance-pill-btn" onclick="openUpiPinModal('Canara Bank', '1092')">
+                  Check Balance
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Portfolio Section -->
+        <div class="portfolio-section">
+          <div class="section-header-row">
+            <span class="section-heading">Portfolio</span>
+          </div>
+
+          <div class="portfolio-grid">
+            <!-- Gold Coins Card -->
+            <div class="portfolio-card">
+              <div class="portfolio-text">
+                <span class="portfolio-title">Gold Coins</span>
+                <span class="portfolio-val">200</span>
+              </div>
+              <div class="portfolio-icon gold-coin-graphic">
+                <i class="fa-solid fa-coins"></i>
+              </div>
+            </div>
+
+            <!-- Save In Gold Card -->
+            <div class="portfolio-card">
+              <div class="portfolio-text">
+                <span class="portfolio-title">Save In Gold</span>
+                <span class="portfolio-sub">Save In Gold</span>
+              </div>
+              <div class="portfolio-icon gold-chest-graphic">
+                <i class="fa-solid fa-vault"></i>
+                <span class="plus-badge">+</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Payment History Section -->
+        <div class="history-section">
+          <div class="history-header">
+            <span class="section-heading">Payment History</span>
+            <div class="history-actions">
+              <button class="hist-icon-btn" title="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+              <button class="hist-icon-btn" title="Filter"><i class="fa-solid fa-sliders"></i></button>
+              <button class="hist-icon-btn" title="Download"><i class="fa-solid fa-download"></i></button>
+            </div>
+          </div>
+
+          <!-- Tax Filing Banner -->
+          <div class="tax-banner">
+            <div class="tax-left">
+              <div class="tax-icon-wrapper">
+                <i class="fa-solid fa-file-invoice-dollar"></i>
+              </div>
+              <div class="tax-text">
+                <span class="tax-title">Filing taxes?</span>
+                <span class="tax-sub">Download UPI Statement</span>
+              </div>
+            </div>
+            <button class="download-now-btn" id="openStatementModalBtn">Download Now</button>
+          </div>
+
+          <!-- History Date Header -->
+          <div class="history-month-header">
+            <span class="month-title">August 2026</span>
+            <div class="month-total" id="openMonthSummaryBtn">
+              <span>Total Received <strong>₹5,000</strong></span>
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          </div>
+
+          <!-- Transaction List -->
+          <div class="transaction-list" id="transactionList">
+            <!-- Item 1: Money Received from Papa -->
+            <div class="tx-item" data-id="tx1">
+              <div class="tx-avatar orange-bg">P</div>
+              <div class="tx-details">
+                <div class="tx-top-line">
+                  <span class="tx-name">Papa</span>
+                  <span class="tx-amount credit">+ ₹2,500</span>
+                </div>
+                <div class="tx-sub-line">
+                  <span class="tx-time">Received Today, 5:31 PM</span>
+                </div>
+                <div class="tx-tags">
+                  <span class="tx-badge green-badge"><i class="fa-solid fa-circle-arrow-down"></i> Money Received</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Item 2: Money Received from Papa -->
+            <div class="tx-item" data-id="tx2">
+              <div class="tx-avatar orange-bg">P</div>
+              <div class="tx-details">
+                <div class="tx-top-line">
+                  <span class="tx-name">Papa</span>
+                  <span class="tx-amount credit">+ ₹2,500</span>
+                </div>
+                <div class="tx-sub-line">
+                  <span class="tx-time">Yesterday, 08:30 PM</span>
+                </div>
+                <div class="tx-tags">
+                  <span class="tx-badge blue-badge">Paytm UPI</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div> <!-- End App Content -->
+
+    </div> <!-- End Phone Frame -->
+  </div>
+
+  <!-- UPI PIN Modal -->
+  <div class="modal-overlay" id="upiModalOverlay">
+    <div class="upi-modal-card">
+      <div class="upi-modal-header">
+        <span class="upi-brand">NPCI | UPI</span>
+        <button class="upi-close-btn" id="closeUpiModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div class="upi-bank-summary">
+        <div class="upi-bank-logo">HDFC</div>
+        <div class="upi-bank-text">
+          <span class="upi-bank-title" id="upiBankTitle">HDFC Bank</span>
+          <span class="upi-bank-acc" id="upiBankAcc">A/c No: •••• 5820</span>
+        </div>
+      </div>
+
+      <div class="upi-prompt">
+        <p class="upi-instruction">ENTER 4-DIGIT UPI PIN</p>
+        <div class="pin-dots-row">
+          <span class="pin-dot" id="dot1"></span>
+          <span class="pin-dot" id="dot2"></span>
+          <span class="pin-dot" id="dot3"></span>
+          <span class="pin-dot" id="dot4"></span>
+        </div>
+      </div>
+
+      <!-- Keypad -->
+      <div class="keypad-grid">
+        <button class="key-btn" onclick="enterPinDigit('1')">1</button>
+        <button class="key-btn" onclick="enterPinDigit('2')">2</button>
+        <button class="key-btn" onclick="enterPinDigit('3')">3</button>
+        <button class="key-btn" onclick="enterPinDigit('4')">4</button>
+        <button class="key-btn" onclick="enterPinDigit('5')">5</button>
+        <button class="key-btn" onclick="enterPinDigit('6')">6</button>
+        <button class="key-btn" onclick="enterPinDigit('7')">7</button>
+        <button class="key-btn" onclick="enterPinDigit('8')">8</button>
+        <button class="key-btn" onclick="enterPinDigit('9')">9</button>
+        <button class="key-btn fn-key" onclick="clearPinDigit()"><i class="fa-solid fa-delete-left"></i></button>
+        <button class="key-btn" onclick="enterPinDigit('0')">0</button>
+        <button class="key-btn submit-key" onclick="submitPin()"><i class="fa-solid fa-check"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Statement / Receipt Modal -->
+  <div class="modal-overlay" id="statementModalOverlay">
+    <div class="statement-modal-card">
+      <div class="stmt-header">
+        <div class="stmt-brand">
+          <i class="fa-solid fa-receipt"></i> HDFC Bank Statement
+        </div>
+        <button class="close-modal-icon" id="closeStmtModalBtn"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <div class="stmt-body" id="stmtBodyPrint">
+        <div class="stmt-user-box">
+          <span class="user-label">Account Holder Name</span>
+          <span class="user-val">SHISHAGRA NIGAM</span>
+          <span class="user-sub">HDFC Bank Savings Account •••• 5820</span>
+          <span class="user-sub">IFSC Code: HDFC0000128</span>
+        </div>
+
+        <div class="stmt-summary-row">
+          <div class="stmt-stat-card">
+            <span class="stat-lbl">Opening Balance</span>
+            <span class="stat-val">₹0.00</span>
+          </div>
+          <div class="stmt-stat-card">
+            <span class="stat-lbl">Total Credits</span>
+            <span class="stat-val credit">+ ₹5,000.00</span>
+          </div>
+          <div class="stmt-stat-card">
+            <span class="stat-lbl">Available Balance</span>
+            <span class="stat-val bold-val">₹5,000.00</span>
+          </div>
+        </div>
+
+        <div class="stmt-tx-table-wrapper">
+          <table class="stmt-table">
+            <thead>
+              <tr>
+                <th>Date & Time</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>19 Aug 2026, 05:26 PM</td>
+                <td>UPI/Papa/Transfer/HDFC</td>
+                <td>CR</td>
+                <td class="credit">+ ₹2,500.00</td>
+              </tr>
+              <tr>
+                <td>18 Aug 2026, 08:30 PM</td>
+                <td>UPI/Papa/Paytm/HDFC</td>
+                <td>CR</td>
+                <td class="credit">+ ₹2,500.00</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="stmt-footer">
+        <button class="print-btn" onclick="window.print()"><i class="fa-solid fa-print"></i> Print / Save PDF</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="appToast">
+    <i class="fa-solid fa-circle-check toast-icon"></i>
+    <span id="toastMessage">Balance updated to ₹5,000.00</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

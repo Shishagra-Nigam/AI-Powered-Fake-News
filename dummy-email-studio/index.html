@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dummy Email Studio & Screenshot Generator</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- html2canvas for Screenshot Export -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Top Header Navigation -->
+    <header class="app-header">
+      <div class="brand">
+        <i class="fa-solid fa-envelope-open-text brand-icon"></i>
+        <div class="brand-text">
+          <h1>Dummy Email Studio</h1>
+          <span class="tag">UI Mockup & Screenshot Generator</span>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <!-- View Mode Switcher -->
+        <div class="segmented-control">
+          <button class="control-btn active" id="btn-desktop-view" title="Desktop View">
+            <i class="fa-solid fa-desktop"></i> <span>Desktop</span>
+          </button>
+          <button class="control-btn" id="btn-mobile-view" title="Mobile View">
+            <i class="fa-solid fa-mobile-screen"></i> <span>Mobile</span>
+          </button>
+        </div>
+
+        <!-- Theme Toggle -->
+        <button class="theme-toggle-btn" id="theme-toggle" title="Toggle Dark/Light UI">
+          <i class="fa-solid fa-moon moon-icon"></i>
+          <i class="fa-solid fa-sun sun-icon"></i>
+        </button>
+
+        <!-- Screenshot Export Button -->
+        <button class="primary-btn export-btn" id="btn-export-screenshot">
+          <i class="fa-solid fa-camera"></i>
+          <span>Capture Screenshot</span>
+        </button>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <!-- Left Sidebar: Controls & Customizer -->
+      <aside class="sidebar-controls">
+        <div class="panel-section">
+          <h2><i class="fa-solid fa-wand-magic-sparkles"></i> Quick Presets</h2>
+          <div class="preset-chips">
+            <button class="chip active" data-preset="project-update">
+              <i class="fa-solid fa-chart-line"></i> Project Digest
+            </button>
+            <button class="chip" data-preset="welcome-onboarding">
+              <i class="fa-solid fa-hand-wave"></i> Welcome Onboarding
+            </button>
+            <button class="chip" data-preset="order-receipt">
+              <i class="fa-solid fa-receipt"></i> Order Receipt
+            </button>
+            <button class="chip" data-preset="system-alert">
+              <i class="fa-solid fa-shield-halved"></i> Security Alert
+            </button>
+          </div>
+        </div>
+
+        <!-- Customizer Form -->
+        <div class="panel-section">
+          <h2><i class="fa-solid fa-sliders"></i> Email Header Details</h2>
+          
+          <div class="form-group">
+            <label for="input-sender-name">Sender Name</label>
+            <input type="text" id="input-sender-name" value="Acme Platform Team" placeholder="e.g. Acme Corp">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="input-sender-email">Sender Email</label>
+              <input type="text" id="input-sender-email" value="notifications@acme-demo.org">
+            </div>
+            <div class="form-group checkbox-group flex-0">
+              <label for="input-verified" class="checkbox-label" title="Verified Badge">
+                <input type="checkbox" id="input-verified" checked>
+                <span>Verified</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="input-recipient-name">Recipient Name & Email</label>
+            <input type="text" id="input-recipient-name" value="Jane Smith <jane.smith@example.com>">
+          </div>
+
+          <div class="form-group">
+            <label for="input-subject">Subject Line</label>
+            <input type="text" id="input-subject" value="🚀 Weekly Project Progress & Key Milestones Summary">
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label for="input-timestamp">Date & Time</label>
+              <input type="text" id="input-timestamp" value="Today at 10:45 AM">
+            </div>
+            <div class="form-group flex-1">
+              <label for="input-avatar-initials">Avatar (Initials / Emoji)</label>
+              <input type="text" id="input-avatar-initials" value="AP" maxlength="3">
+            </div>
+          </div>
+        </div>
+
+        <!-- Mail Body Content Editor -->
+        <div class="panel-section">
+          <h2><i class="fa-solid fa-pen-to-square"></i> Mail Body Editor</h2>
+          <div class="form-group">
+            <label for="input-body-content">HTML / Text Content</label>
+            <textarea id="input-body-content" rows="8"></textarea>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Canvas: Realistic Webmail UI Viewport -->
+      <main class="preview-stage">
+        <div class="stage-container" id="stage-viewport">
+          
+          <!-- Mock Webmail Shell -->
+          <div class="mock-webmail-window" id="email-capture-target">
+            
+            <!-- Window Topbar -->
+            <div class="webmail-window-header">
+              <div class="window-controls">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="search-bar">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                <span class="search-text">Search mail, contacts, or documents...</span>
+              </div>
+              <div class="window-actions">
+                <i class="fa-regular fa-bell"></i>
+                <i class="fa-solid fa-circle-user"></i>
+              </div>
+            </div>
+
+            <!-- Mail Interface Layout -->
+            <div class="webmail-body-layout">
+              <!-- Left Mini Sidebar -->
+              <nav class="webmail-nav-sidebar">
+                <button class="compose-btn" title="Compose New Mail">
+                  <i class="fa-solid fa-pen"></i>
+                </button>
+                <ul class="nav-icons">
+                  <li class="active" title="Inbox"><i class="fa-solid fa-inbox"></i><span class="badge">4</span></li>
+                  <li title="Starred"><i class="fa-regular fa-star"></i></li>
+                  <li title="Sent"><i class="fa-regular fa-paper-plane"></i></li>
+                  <li title="Drafts"><i class="fa-regular fa-file"></i></li>
+                  <li title="Trash"><i class="fa-regular fa-trash-can"></i></li>
+                </ul>
+              </nav>
+
+              <!-- Email Content Display Area -->
+              <div class="email-view-container">
+                
+                <!-- Mail Header / Toolbar -->
+                <div class="email-toolbar">
+                  <div class="toolbar-left">
+                    <button class="tool-btn" title="Back to Inbox"><i class="fa-solid fa-arrow-left"></i></button>
+                    <button class="tool-btn" title="Archive"><i class="fa-regular fa-box-archive"></i></button>
+                    <button class="tool-btn" title="Report Spam"><i class="fa-regular fa-circle-exclamation"></i></button>
+                    <button class="tool-btn" title="Delete"><i class="fa-regular fa-trash-can"></i></button>
+                    <span class="v-divider"></span>
+                    <button class="tool-btn" title="Mark as Unread"><i class="fa-regular fa-envelope"></i></button>
+                  </div>
+                  <div class="toolbar-right">
+                    <span class="mail-counter">1 of 1,482</span>
+                    <button class="tool-btn"><i class="fa-solid fa-chevron-left"></i></button>
+                    <button class="tool-btn"><i class="fa-solid fa-chevron-right"></i></button>
+                  </div>
+                </div>
+
+                <!-- Email Main Content Card -->
+                <div class="email-card">
+                  <!-- Subject Banner -->
+                  <div class="email-subject-row">
+                    <h2 class="email-subject-title" id="display-subject">
+                      🚀 Weekly Project Progress & Key Milestones Summary
+                    </h2>
+                    <div class="subject-actions">
+                      <span class="tag inbox-tag">Inbox</span>
+                      <i class="fa-regular fa-star star-btn" id="star-toggle" title="Star Email"></i>
+                      <i class="fa-solid fa-print print-btn" title="Print Mail"></i>
+                    </div>
+                  </div>
+
+                  <!-- Sender / Recipient Metadata Header -->
+                  <div class="email-sender-card">
+                    <div class="sender-avatar" id="display-avatar">AP</div>
+                    <div class="sender-info">
+                      <div class="sender-headline">
+                        <span class="sender-name" id="display-sender-name">Acme Platform Team</span>
+                        <span class="verified-badge" id="display-verified" title="Verified Official Domain">
+                          <i class="fa-solid fa-circle-check"></i> Verified Sender
+                        </span>
+                        <span class="sender-email" id="display-sender-email">&lt;notifications@acme-demo.org&gt;</span>
+                      </div>
+                      <div class="recipient-headline">
+                        to <span class="recipient-name" id="display-recipient">Jane Smith &lt;jane.smith@example.com&gt;</span>
+                        <i class="fa-solid fa-caret-down flex-caret"></i>
+                      </div>
+                    </div>
+                    <div class="email-timestamp" id="display-timestamp">Today at 10:45 AM</div>
+                  </div>
+
+                  <!-- Email Rich Body Area -->
+                  <div class="email-message-body" id="display-body-content">
+                    <!-- Loaded dynamically via JS presets -->
+                  </div>
+
+                  <!-- Quick Reply Footer -->
+                  <div class="email-reply-box">
+                    <button class="reply-action-btn"><i class="fa-solid fa-reply"></i> Reply</button>
+                    <button class="reply-action-btn"><i class="fa-solid fa-share"></i> Forward</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script src="app.js"></script>
+</body>
+</html>
